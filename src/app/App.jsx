@@ -10,7 +10,7 @@ export const App = () => {
         <li key={todo.id}>
           <h1>{todo.title}</h1>
           <p>{todo.description}</p>
-          <p>{todo.isCompleted}</p>
+          <p>{todo.completed}</p>
         </li>
       ))}
     </ul>
