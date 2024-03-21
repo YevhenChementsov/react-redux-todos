@@ -10,4 +10,7 @@ export default defineConfig({
       features: ['/src/features'],
     },
   },
+  server: {
+    open: 'http://localhost:5173',
+  },
 });

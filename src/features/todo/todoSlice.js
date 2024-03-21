@@ -33,7 +33,7 @@ export const todoApi = createApi({
       invalidatesTags: (result, error, id) => [{ type: 'Todo', id }],
     }),
     deleteTodo: builder.mutation({
-      query: ({ id }) => ({
+      query: id => ({
         url: `/todos/${id}`,
         method: 'DELETE',
       }),
