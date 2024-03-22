@@ -6,7 +6,7 @@ export default defineConfig({
   resolve: {
     alias: {
       app: ['/src/app'],
-      components: ['/src/components'],
+      common: ['/src/common'],
       features: ['/src/features'],
     },
   },
