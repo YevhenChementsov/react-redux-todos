@@ -1,3 +1,3 @@
-export * from './AddTodoForm/AddTodoForm';
-export * from './TodoItem/TodoItem';
-export * from './TodoList/TodoList';
+export * from './TodoEditorForm';
+export * from './TodoItem';
+export * from './TodoList';

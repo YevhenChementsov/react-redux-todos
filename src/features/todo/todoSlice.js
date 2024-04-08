@@ -29,6 +29,7 @@ export const todoApi = createApi({
       query: todo => ({
         url: `/todos/${todo.id}`,
         method: 'PUT',
+        body: todo,
       }),
       invalidatesTags: (result, error, id) => [{ type: 'Todo', id }],
     }),

@@ -4,8 +4,8 @@
     "baseUrl": "src",
     "paths": {
       "app/*": ["app/*"],
-      "common/*": ["common/*"],
-      "features/*": ["features/*"]
+      "features/*": ["features/*"],
+      "hooks/*": ["hooks/*"]
     }
   }
 }

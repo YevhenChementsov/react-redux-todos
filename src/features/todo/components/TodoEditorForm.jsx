@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material';
-import { useAddTodoMutation } from 'features/todo/todoSlice';
 import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
 import * as yup from 'yup';
 
 const validationSchema = yup.object({
@@ -13,22 +13,22 @@ const validationSchema = yup.object({
   description: yup.string().trim(),
 });
 
-const initialValues = {
-  title: '',
-  description: '',
-};
-
-export const AddTodoForm = () => {
-  const [addTodo] = useAddTodoMutation();
+export const TodoEditorForm = ({
+  initialValues = { title: '', description: '' },
+  onSubmit,
+  buttonText,
+}) => {
   const { handleSubmit, values, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues,
       validationSchema,
       onSubmit: async (values, { resetForm }) => {
         try {
-          await addTodo(values).unwrap();
+          await onSubmit(values).unwrap();
+          toast.success('To-do successfully created!');
           resetForm();
         } catch (error) {
+          toast.error('Something went wrong! Please, try again.');
           console.log(error);
         }
       },
@@ -58,7 +58,7 @@ export const AddTodoForm = () => {
           helperText={touched.description && errors.description}
         />
         <Button type="submit" variant="contained">
-          Add to-do
+          {buttonText}
         </Button>
       </form>
     </>
