@@ -10,7 +10,12 @@ export const todoApi = createApi({
     getTodos: builder.query({
       query: () => '/todos',
       providesTags: result =>
-        result ? result.map(({ id }) => ({ type: 'Todo', id })) : ['Todo'],
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Todo', id })),
+              { type: 'Todo', id: 'LIST' },
+            ]
+          : [{ type: 'Todo', id: 'LIST' }],
       transformResponse: response => response.sort((a, b) => b.id - a.id),
     }),
     getTodoById: builder.query({
@@ -23,7 +28,7 @@ export const todoApi = createApi({
         method: 'POST',
         body: todo,
       }),
-      invalidatesTags: ['Todo'],
+      invalidatesTags: [{ type: 'Todo', id: 'LIST' }],
     }),
     updateTodo: builder.mutation({
       query: todo => ({
@@ -38,7 +43,7 @@ export const todoApi = createApi({
         url: `/todos/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Todo'],
+      invalidatesTags: [{ type: 'Todo', id: 'LIST' }],
     }),
   }),
 });
